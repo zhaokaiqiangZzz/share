@@ -1,0 +1,20 @@
+<ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" class="menu">
+  <li nz-menu-item class="app-name-container" routerLink="/main">
+    <p class="top-bar-info">
+      Alice学生管理系统
+    </p>
+  </li>
+  <ng-container>
+    <li nz-submenu class="user-container">
+      <h4 title class="top-bar-info">
+        <i nz-icon [nzType]="'user'" [nzTheme]="'outline'"></i>
+        {{ currentLoginUser?.teacher?.name }}
+      </h4>
+
+      <ul>
+        <li nz-menu-item routerLink="/main/personal">个人中心</li>
+        <li nz-menu-item (click)="logout()">注销</li>
+      </ul>
+    </li>
+  </ng-container>
+</ul>

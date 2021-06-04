@@ -1,0 +1,21 @@
+<nz-layout>
+  <!-- 顶部基本栏 -->
+  <nz-header class="header">
+    <app-menu></app-menu>
+  </nz-header>
+  <nz-layout>
+    <!-- 左侧导航栏 -->
+    <nz-sider nzCollapsible [nzWidth]="260" class="side">
+      <app-left-control></app-left-control>
+    </nz-sider>
+
+    <!-- 页面内容 -->
+    <nz-content class="content">
+      <div nz-row>
+        <div nz-col [nzSpan]="20" [nzOffset]="2">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
