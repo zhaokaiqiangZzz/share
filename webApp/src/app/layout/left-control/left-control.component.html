@@ -1,10 +1,10 @@
 <ul nz-menu [nzMode]="'inline'"  id="menu-list">
   <li *ngFor="let menu of menuList"
       nz-menu-item
-      routerLink="/main/{{menu.router}}"
-      nzSelected="{{menu._selected}}">
+      routerLink="/{{menu.router}}"
+      nzSelected="{{menu.selected}}">
         <span>
-            <i nz-icon type={{menu.iconType}} theme="outline"></i>
+<!--            <i nz-icon type={{menu.iconType}} theme="outline"></i>-->
             <span class="nav-text">{{menu.name}}</span>
         </span>
   </li>

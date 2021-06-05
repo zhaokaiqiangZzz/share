@@ -2,9 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayoutComponent } from './layout.component';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
-import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
-import {NzMenuModule} from 'ng-zorro-antd/menu';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NzGridModule} from 'ng-zorro-antd/grid';
 import {MenuComponent} from './menu/menu.component';
 import {LeftControlComponent} from './left-control/left-control.component';
@@ -31,7 +28,7 @@ describe('LayoutComponent', () => {
     fixture.detectChanges();
   });
 
-  fit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

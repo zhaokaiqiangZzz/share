@@ -1,0 +1,18 @@
+<div class="input-group mb-2" *ngIf="models.length > 10">
+  <div class="input-group-prepend">
+    <div class="input-group-text">🔍</div>
+  </div>
+  <input type="text" class="form-control"
+         [formControl]="nameFormControl"
+         placeholder="{{subject}}">
+</div>
+<ng-container *ngFor="let model of models">
+  <div class="form-check form-check-inline"
+       *ngIf="model.object.name.includes(nameFormControl.value)">
+    <input class="form-check-input" type="checkbox" [formControl]="model.formControl"
+           id="{{id}}_{{model.object.id}}">
+    <label class="form-check-label" for="{{id}}_{{model.object.id}}">
+      {{ model.object.name }}
+    </label>
+  </div>
+</ng-container>

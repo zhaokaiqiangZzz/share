@@ -1,0 +1,7 @@
+<small>
+  显示
+  <select class="border-0 bg-white ml-2 mr-2" [(ngModel)]="size" (change)="sizeChange(size)">
+    <option *ngFor="let _size of [10, 20, 50]">{{_size}}</option>
+  </select>
+  条
+</small>
