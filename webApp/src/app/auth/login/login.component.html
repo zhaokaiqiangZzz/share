@@ -1,0 +1,16 @@
+<div class="form-block mx-auto">
+  <div class="text-center mb-5">
+    <h3 class="text-uppercase text-success">Welcome</h3>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <div class="form-group first">
+      <label for="username">用户名</label>
+      <input type="text" [formControlName]="keys.username" class="form-control" placeholder="请输入您的用户名" id="username">
+    </div>
+    <div class="form-group last mb-3">
+      <label for="password">密码</label>
+      <input type="password" [formControlName]="keys.password" class="form-control" placeholder="请输入您的密码" id="password">
+    </div>
+    <button type="submit" class="btn btn-block py-2 btn-primary" [disabled]="loginForm.invalid">登录</button>
+  </form>
+</div>

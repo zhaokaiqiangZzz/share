@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  color: '#1755A6',
+  title: '知识共享平台',
+  apiUrl: 'http://localhost:8002',
+  defaultPassword: 'yunzhi',
+  size: 5
 };
 
 /*

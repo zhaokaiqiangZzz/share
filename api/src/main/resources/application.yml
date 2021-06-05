@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    # demo: 演示环境，内置数据库；pro 生产环境，mysql数据库
+    active: ${active:pro}
+  # hibernate 数据库 验证级别
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: ${show-sql:false}
+    # 在同一请求中使用同一个EntityManager
+    # https://stackoverflow.com/questions/30549489/what-is-this-spring-jpa-open-in-view-true-property-in-spring-boot
+  #    open-in-view: false
+  # 启用 flyway
+  flyway:
+    enabled: false
+
+  # 上传文件大小限制
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: ${file.size:20MB}
+      max-request-size: ${file.size:20MB}
+
+server:
+  # 配置端口
+  port: ${port:8002}
+  servlet:
+    session:
+      timeout: 60m
+---
+spring:
+  config:
+    activate:
+      on-profile: pro
+  jpa:
+    hibernate:
+      ddl-auto: update
+  flyway:
+    enabled: false
+  # 配置数据源
+  datasource:
+    url: jdbc:mysql://${datasource.url:localhost}:${datasource.port:3307}/${datasource.dbname:share}?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: ${datasource.username:root}
+    password: ${datasource.password:}
+
+---

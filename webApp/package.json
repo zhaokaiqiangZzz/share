@@ -21,10 +21,15 @@
     "@angular/router": "~10.1.5",
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
+    "ng-zorro-antd": "^10.2.2",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "@yunzhi/ng-mock-api": "0.0.5",
+    "file-saver": "~2.0.1",
+    "jasmine-marbles": "~0.8.1",
+    "sweetalert2": "^9.4.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1002.0",

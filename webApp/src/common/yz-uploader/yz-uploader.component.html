@@ -1,0 +1,43 @@
+<app-yz-modal size="md" >
+  <div class="yz-uploader">
+    <div class="file-drop-area mb-2">
+      <span class="fake-btn">{{(_multiple && fileList.length) ? '请继续上传文件' : '请选择上传文件'}}</span>
+      <span class="file-msg" *ngIf="!fileList.length">或直接将文件托放到这里</span>
+      <span class="file-msg file-block" *ngFor="let file of fileList">
+      <span *ngIf="_multiple" (click)="removeFile(file)">
+        <i class="fas fa-trash-alt"></i>
+      </span>
+        {{file.name}}&nbsp;&nbsp;</span>
+      <input class="file-input" type="file" [multiple]="_multiple" [accept]="accept">
+    </div>
+    <div class="row">
+      <div class="col-12 text-right">
+        <button class="btn btn-warning btn-sm" type="button"
+                (click)="onCancel()"
+                [disabled]="uploading">
+          <i class="fas fa-ban"></i>取消
+        </button>
+        <button class="btn btn-primary btn-sm" type="button"
+                (click)="onSubmit()"
+                [disabled]="uploading || ( !fileList.length)">
+          <i class="fa fa-upload"></i>开始上传
+        </button>
+      </div>
+    </div>
+
+    <ng-container *ngIf="uploading">
+      <div class="row">
+        <div class="col-12">
+          <span class="file-msg">正在上传:{{ finishedTask + 1}}/{{fileList.length}}</span>
+        </div>
+      </div>
+      <div class="progress m-2">
+        <div class="progress-bar" role="progressbar"
+             [ngStyle]="{'width': progress + '%'}" attr.aria-valuenow="{{progress}}"
+             attr.aria-valuemin="0" attr.aria-valuemax="100">{{progress}}%
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</app-yz-modal>

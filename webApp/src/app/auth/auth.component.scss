@@ -1,0 +1,19 @@
+.half, .half .container>.row {
+  height: 100vh;
+  min-height: 700px;
+}
+
+.half .bg {
+  background-size: cover;
+  background-position: center;
+  width: 60%;
+}
+
+.half .contents {
+  width: 40%;
+}
+
+.half, .half .container>.row {
+  height: 100vh;
+  min-height: 700px;
+}
