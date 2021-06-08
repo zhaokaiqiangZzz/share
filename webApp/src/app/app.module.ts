@@ -16,12 +16,16 @@ import { XAuthTokenInterceptor } from '../interceptor/x-auth-token.interceptor';
 import { NullOrUndefinedOrEmptyInterceptor } from '../interceptor/null-or-undefined-or-empty.interceptor';
 import { LoadingInterceptor } from '../interceptor/loading.interceptor';
 import { HttpErrorInterceptor } from '../interceptor/http-error.interceptor';
+import { JobModule } from './job/job.module';
+import { PostGraduateModule } from './post-graduate/post-graduate.module';
+import { HighEntranceModule } from './high-entrance/high-entrance.module';
+import { CompetitionModule } from './competition/competition.module';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,11 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    LayoutModule
+    LayoutModule,
+    JobModule,
+    PostGraduateModule,
+    HighEntranceModule,
+    CompetitionModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },
     {

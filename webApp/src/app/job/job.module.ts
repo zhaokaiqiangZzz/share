@@ -1,0 +1,20 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { JobRoutingModule } from './job-routing.module';
+import { JobComponent } from './job.component';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
+import { ViewComponent } from './view/view.component';
+import { PageModule } from '../../common/page/page.module';
+
+
+@NgModule({
+  declarations: [JobComponent, AddComponent, EditComponent, ViewComponent],
+  imports: [
+    CommonModule,
+    JobRoutingModule,
+    PageModule
+  ]
+})
+export class JobModule { }
