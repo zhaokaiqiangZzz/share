@@ -27,7 +27,7 @@ export class Attachment {
   /**
    * 保存到用户计算机的名称.
    */
-  _saveName: string;
+  saveName: string;
 
   constructor(data = {} as {
     id?: number,

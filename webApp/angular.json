@@ -28,9 +28,10 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.sass",
-              "./node_modules/bootstrap/dist/css/bootstrap.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
             "scripts": []
           },
