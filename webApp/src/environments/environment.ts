@@ -7,7 +7,7 @@ export const environment = {
   color: '#1755A6',
   title: '知识共享平台',
   apiUrl: 'http://localhost:8002',
-  defaultPassword: 'yunzhi',
+  defaultPassword: 'hebut',
   size: 5
 };
 

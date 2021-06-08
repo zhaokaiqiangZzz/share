@@ -151,7 +151,7 @@ export class CommonService {
           /** 如果处于后退状态，清空状态 */
           /** 获取完历史参数以后再清除后退状态 */
           this.isBack = false;
-        } else if (!this.currentUrl.startsWith('/auth')) {
+        } else if (!this.currentUrl.startsWith('/login')) {
           /** 如果不是认证模块，将当前路由添加到数组中 */
           if (this.routeStates.length >= 50) {
             this.routeStates.splice(0, 1);

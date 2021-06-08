@@ -1,0 +1,19 @@
+._button .btn {
+  margin-right: 1em;
+}
+
+td > .btn {
+  margin-right: 0.5em;
+}
+
+table > thead > tr > th:nth-child(1) {
+  width: 4em;
+}
+
+table > thead > tr > th:nth-child(2) {
+  width: 8em;
+}
+
+table > thead > tr > th:nth-child(9) {
+  width: 20em;
+}

@@ -5,4 +5,6 @@ import com.xiaoqiangZzz.share.entity.Menu;
 
 public interface AuthorityService {
   Authority initAuthority(String name, String value, Menu menu);
+
+  Authority getById(Long id);
 }

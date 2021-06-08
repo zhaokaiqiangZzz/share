@@ -202,14 +202,13 @@ export class UserService {
    * 分页方法
    * @param page 第几页
    * @param size 每页条数
-   * @param param 查询参数
+   * @param username username
    */
-  public page(page: number, size: number, param: { username: number, name: string }): Observable<Page<User>> {
+  public page(page: number, size: number, username?: string): Observable<Page<User>> {
     const params = new HttpParams()
       .append('page', page.toString())
       .append('size', size.toString())
-      .append('username', isNotNullOrUndefined(param.username) ? param.username.toString() : '')
-      .append('name', isNotNullOrUndefined(param.name) ? param.name : '');
+      .append('name', isNotNullOrUndefined(username) ? username.toString() : '');
 
     return this.httpClient.get<Page<User>>(`${this.baseUrl}/page`, {params})
       .pipe(map((data) => new Page<User>(data).toObject((o) => new User(o))));
@@ -295,9 +294,9 @@ export class UserService {
   /**
    * 更新
    */
-  public update(userId: number, user: { username: string, name: string, num: string }): Observable<User> {
+  public update(userId: number, user: { username: string, name: string }): Observable<User> {
     Assert.isNumber(userId, 'userId must be number');
-    Assert.isNotNullOrUndefined(user, user.num, user.name, user.username,
+    Assert.isNotNullOrUndefined(user, user.name, user.username,
       'some properties must be passed');
     return this.httpClient.put<User>(`${this.baseUrl}/${userId.toString()}`, user);
   }

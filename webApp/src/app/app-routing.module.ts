@@ -5,11 +5,11 @@ import { LayoutComponent } from './layout/layout.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'auth',
+    path: 'login',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
   {

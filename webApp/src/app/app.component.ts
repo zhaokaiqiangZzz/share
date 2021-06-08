@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const appOnReadyItem = this.commonService.getAppOnReadyItem();
-    if (this.router && this.router.url && !this.router.url.startsWith(`/auth`)) {
+    if (this.router && this.router.url && !this.router.url.includes('login')) {
       this.userService.initCurrentLoginUser(() => {
         appOnReadyItem.ready = true;
       });

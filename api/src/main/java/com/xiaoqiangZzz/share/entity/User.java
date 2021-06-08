@@ -35,21 +35,11 @@ public class User extends BaseEntity {
   @Column(nullable = false)
   private String name = "";
 
-  @Column(nullable = false)
-  private String num = "";
-
   /**
    * 角色.
    */
   @ManyToOne
   private Role role;
-
-  /**
-   * 状态：
-   * 0 冻结中
-   * 1 正常.
-   */
-  private Integer status = User.STATUS_NORMAL;
 
   @Column(nullable = false)
   private String username;
@@ -89,37 +79,12 @@ public class User extends BaseEntity {
     this.name = name;
   }
 
-  public String getNum() {
-    return num;
-  }
-
-  public void setNum(String num) {
-    this.num = num;
-  }
-
-  public Integer getStatus() {
-    return status;
-  }
-
-  public void setStatus(Integer status) {
-    this.status = status;
-  }
-
   public String getUsername() {
     return username;
   }
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  /**
-   * 判断用户是否被锁定.
-   *
-   * @return 锁定   false ;未锁定  true.
-   */
-  public boolean isNonLocked() {
-    return !User.STATUS_FROZEN.equals(this.getStatus());
   }
 
   public Long getDeleteAt() {

@@ -3,13 +3,23 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { YzSubmitButtonModule } from '../../common/yz-submit-button/yz-submit-button.module';
+import { SizeModule } from '../../common/size/size.module';
+import { PageModule } from '../../common/page/page.module';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
-  declarations: [UserComponent],
+  declarations: [UserComponent, AddComponent, EditComponent],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    ReactiveFormsModule,
+    YzSubmitButtonModule,
+    SizeModule,
+    PageModule,
   ]
 })
 export class UserModule { }

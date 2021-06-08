@@ -3,6 +3,8 @@ package com.xiaoqiangZzz.share.entity;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@SQLDelete(sql = "update `role` set deleted = 1, delete_at = UNIX_TIMESTAMP() where id = ?")
+@Where(clause = "deleted = false")
 public class Role extends BaseEntity {
   private String name;
 

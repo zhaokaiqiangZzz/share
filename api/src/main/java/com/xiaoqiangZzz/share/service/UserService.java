@@ -5,6 +5,8 @@ import com.xiaoqiangZzz.share.vo.BindingUser;
 import com.xiaoqiangZzz.share.vo.PasswordUser;
 import com.xiaoqiangZzz.share.vo.StatusUser;
 import org.apache.poi.ss.usermodel.Row;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.xml.bind.ValidationException;
 import java.io.IOException;
@@ -85,4 +87,12 @@ public interface UserService {
    * @param newPassword 新密码
    */
   void updatePassword(String password, String newPassword) throws ValidationException;
+
+  Page<User> page(String name, Pageable pageable);
+
+  User add(User user);
+
+  User update(Long id, User user);
+
+  void delete(Long id);
 }

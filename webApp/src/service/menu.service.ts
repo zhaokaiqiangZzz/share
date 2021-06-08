@@ -4,6 +4,9 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { UserService } from './user.service';
 import { Menu } from '../entity/menu';
 import { User } from '../entity/user';
+import { Role } from '../entity/role';
+import { map } from 'rxjs/operators';
+import { Page } from '../common/page';
 
 /**
  * 菜单
@@ -29,7 +32,8 @@ export class MenuService {
      * @Author poshichao
      */
     getAll(): Observable<Array<Menu>> {
-        return this.http.get<Array<Menu>>(this.baseUrl);
+        return this.http.get<Array<Menu>>(this.baseUrl + '/getAll')
+          .pipe(map(menus => menus.map(menu => new Menu(menu))));
     }
 
     /**

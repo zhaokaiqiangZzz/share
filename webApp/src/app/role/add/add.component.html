@@ -1,0 +1,39 @@
+<form class="container-sm"  [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup)">
+  <div class="mb-3 row">
+    <label for="name" class="col-3 text-right col-form-label">姓名<code>*</code></label>
+    <div class="col-7">
+      <input type="text" class="form-control" id="name" formControlName="name">
+      <small class="text-danger" *ngIf="formGroup.get('name')!.touched && formGroup.get('name')!.invalid ">
+        格式不正确
+      </small>
+    </div>
+  </div>
+
+  <ng-container *ngFor="let _menu of menus; index as i">
+    <div class="mb-1 row">
+      <label class="form-check-label col-4 text-right col-form-label">
+        <input class="form-check-input" type="checkbox"
+               [checked]="false"
+               (change)="onMenuChange(_menu.id)">
+        {{_menu.name}}</label>
+      <div class="col-7">
+        <ng-container *ngFor="let _authority of _menu.authorityList; index as i">
+          <label class="form-check-label col-7 col-form-label">
+            <input class="form-check-input" type="checkbox"
+                   [checked]="false"
+                   (change)="onAuthorityChange(_authority.id)">
+            {{_authority.name}}</label>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="mb-3 row">
+    <div class="col-sm-10 offset-5">
+      <button class="btn btn-primary" [disabled]="formGroup.invalid">
+        <i class="fas fa-save"></i>&nbsp;保存
+      </button>
+    </div>
+  </div>
+</form>
+

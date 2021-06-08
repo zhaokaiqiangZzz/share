@@ -1,6 +1,9 @@
 package com.xiaoqiangZzz.share.service;
 
 import com.xiaoqiangZzz.share.entity.Menu;
+import com.xiaoqiangZzz.share.entity.Role;
+
+import java.util.List;
 
 public interface MenuService {
   /**
@@ -10,4 +13,8 @@ public interface MenuService {
    * @return
    */
   Menu initMenu(String name, String router);
+
+  List<Menu> getAll();
+
+  Menu getById(Long id);
 }
