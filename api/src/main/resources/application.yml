@@ -39,7 +39,7 @@ spring:
     enabled: false
   # 配置数据源
   datasource:
-    url: jdbc:mysql://${datasource.url:localhost}:${datasource.port:3307}/${datasource.dbname:share}?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://${datasource.url:localhost}:${datasource.port:3306}/${datasource.dbname:share}?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
     username: ${datasource.username:root}
     password: ${datasource.password:}
 

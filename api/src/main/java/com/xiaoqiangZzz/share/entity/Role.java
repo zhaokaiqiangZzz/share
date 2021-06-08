@@ -25,7 +25,7 @@ public class Role extends BaseEntity {
 
   @ManyToMany(fetch = FetchType.EAGER)
   @Fetch(FetchMode.SUBSELECT)
-  @JsonView(MenuListJsonView.class)
+  @JsonView(AuthorityListJsonView.class)
   private List<Authority> authorityList = new ArrayList<>();
 
   public String getName() {

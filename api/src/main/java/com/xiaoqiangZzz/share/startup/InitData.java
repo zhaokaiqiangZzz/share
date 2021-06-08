@@ -130,6 +130,37 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent>, Ord
     adminRoleAuthoritys.add(competitionEditAuthority);
     adminRoleAuthoritys.add(competitionDELETEAuthority);
     Role adminRole = this.roleService.initRole("管理员", adminRoleMenus, adminRoleAuthoritys);
+
+    List<Menu> normalRoleMenus = new ArrayList<>();
+    normalRoleMenus.add(jobMenu);
+    normalRoleMenus.add(postGraduateMenu);
+    normalRoleMenus.add(highEntranceMenu);
+    normalRoleMenus.add(competitionMenu);
+    normalRoleMenus.add(personalMenu);
+
+    List<Authority> normalRoleAuthoritys = new ArrayList<>();
+    normalRoleAuthoritys.add(jobAddAuthority);
+    normalRoleAuthoritys.add(jobReadAuthority);
+    normalRoleAuthoritys.add(jobEditAuthority);
+    normalRoleAuthoritys.add(jobDELETEAuthority);
+
+    normalRoleAuthoritys.add(postGraduateAddAuthority);
+    normalRoleAuthoritys.add(postGraduateReadAuthority);
+    normalRoleAuthoritys.add(postGraduateEditAuthority);
+    normalRoleAuthoritys.add(postGraduateDELETEAuthority);
+
+    normalRoleAuthoritys.add(highEntranceAddAuthority);
+    normalRoleAuthoritys.add(highEntranceReadAuthority);
+    normalRoleAuthoritys.add(highEntranceEditAuthority);
+    normalRoleAuthoritys.add(highEntranceDELETEAuthority);
+
+    normalRoleAuthoritys.add(competitionAddAuthority);
+    normalRoleAuthoritys.add(competitionReadAuthority);
+    normalRoleAuthoritys.add(competitionEditAuthority);
+    normalRoleAuthoritys.add(competitionDELETEAuthority);
+
+    Role normalRole = this.roleService.initRole("普通用户", normalRoleMenus, normalRoleAuthoritys);
+
     User user = new User();
     user.setName("赵凯强");
     user.setUsername("13900000000");
