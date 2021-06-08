@@ -15,6 +15,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -134,6 +136,30 @@ public class UserServiceImpl implements UserService, UserDetailsService, Auditor
   }
 
   @Override
+  public Page<User> page(String name, Pageable pageable) {
+    return userRepository.findAllByNameContaining(name, pageable);
+  }
+
+  @Override
+  public User add(User user) {
+    return this.userRepository.save(user);
+  }
+
+  @Override
+  public User update(Long id, User user) {
+    User oldUser = this.getById(id);
+    oldUser.setUsername(user.getUsername());
+    oldUser.setRole(user.getRole());
+    oldUser.setName(user.getName());
+    return this.userRepository.save(oldUser);
+  }
+
+  @Override
+  public void delete(Long id) {
+    this.userRepository.deleteById(id);
+  }
+
+  @Override
   public void resetPassword(Long id) {
     User user = this.getById(id);
     user.setPassword(User.DEFAULT_PASSWORD);
@@ -166,7 +192,7 @@ public class UserServiceImpl implements UserService, UserDetailsService, Auditor
 //    for (Role role: user.getRoles()) {
 //      authorities.add(new SimpleGrantedAuthority(role.getValue()));
 //    }
-    return new UserDetail(user,user.isNonLocked(), authorities);
+    return new UserDetail(user,true, authorities);
   }
 
   public static class UserDetail extends org.springframework.security.core.userdetails.User {

@@ -7,6 +7,10 @@ import com.xiaoqiangZzz.share.repository.UserRepository;
 import com.xiaoqiangZzz.share.service.UserService;
 import com.xiaoqiangZzz.share.vo.PasswordUser;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -86,10 +90,54 @@ public class UserController {
     this.userService.resetPassword(id);
   }
 
+  @GetMapping("{id}")
+  @JsonView(GetByIdJsonView.class)
+  public User getById(@PathVariable Long id) {
+    return this.userService.getById(id);
+  }
+
+  @GetMapping("page")
+  @JsonView(PageJsonView.class)
+  public Page<User> page(
+      @RequestParam(required = false, defaultValue = "") String name,
+      @SortDefault.SortDefaults(@SortDefault(sort = "id", direction = Sort.Direction.DESC))
+          Pageable pageable) {
+    return this.userService.page(name, pageable);
+  }
+
+  @PostMapping
+  @JsonView(AddJsonView.class)
+  public User add(@RequestBody User user) {
+    return this.userService.add(user);
+  }
+
+  @PutMapping("{id}")
+  @JsonView(UpdateJsonView.class)
+  public User update(@PathVariable Long id, @RequestBody User user) {
+    return this.userService.update(id, user);
+  }
+
+  @DeleteMapping("{id}")
+  public void delete(@PathVariable Long id) {
+    this.userService.delete(id);
+  }
+
   private interface LoginJsonView extends Role.MenuListJsonView, Role.AuthorityListJsonView {
   }
 
   private interface GetCurrentLoginUserJsonView extends Role.MenuListJsonView, Role.AuthorityListJsonView {
+  }
+
+  private interface PageJsonView extends User.RolesJsonView {
+  }
+
+  public interface AddJsonView extends User.RolesJsonView {
+  }
+
+  public interface UpdateJsonView extends User.RolesJsonView {
+  }
+
+  public interface GetByIdJsonView extends User.RolesJsonView {
   }
 
 }

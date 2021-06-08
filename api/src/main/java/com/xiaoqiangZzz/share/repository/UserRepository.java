@@ -1,6 +1,8 @@
 package com.xiaoqiangZzz.share.repository;
 
 import com.xiaoqiangZzz.share.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,6 +18,8 @@ public interface UserRepository extends CrudRepository<User, Long>, JpaSpecifica
    * @return user列表
    */
   List<User> findAll();
+
+  Page<User> findAllByNameContaining(String name, Pageable pageable);
 
   Optional<User> findByUsername(String name);
 }
