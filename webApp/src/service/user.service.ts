@@ -332,4 +332,8 @@ export class UserService {
   setPassword(password: string): Observable<void> {
     return this.httpClient.patch<void>(this.baseUrl + '/setPassword', {password});
   }
+
+  register(param: { password: string; name: string; username: string }) {
+    return this.httpClient.post(this.baseUrl + '/register', param);
+  }
 }

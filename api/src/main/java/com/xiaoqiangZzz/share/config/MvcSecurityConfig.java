@@ -45,9 +45,7 @@ public class MvcSecurityConfig extends WebSecurityConfigurerAdapter {
     http
         .authorizeRequests()
         // 开放端口
-        .antMatchers("/user/getRolesByUsername").permitAll()
-        .antMatchers("/user/sendVerificationCode").permitAll()
-        .antMatchers("/user/userBinding").permitAll()
+        .antMatchers("/user/register").permitAll()
         .anyRequest().authenticated()
         .and().cors()
         .and().httpBasic()

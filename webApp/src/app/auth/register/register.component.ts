@@ -1,9 +1,11 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../../entity/user';
 import {Subject} from 'rxjs';
 import {UserService} from '../../../service/user.service';
 import {CommonService} from '../../../service/common.service';
+import {Router} from "@angular/router";
+import {config} from "../../../conf/app.config";
 
 @Component({
   selector: 'app-register',
@@ -12,52 +14,51 @@ import {CommonService} from '../../../service/common.service';
 })
 export class RegisterComponent implements OnInit {
 
-  /** 注册表单对象 */
-  registerForm: FormGroup;
+  keys = {
+    username: 'username',
+    password: 'password',
+    name: 'name',
+  };
 
-  /** 通过输入的手机号判断身份，如果是学生，设置为学号，如果是老师，设置为工号 */
-  numName = '学号';
+  // 正在倒计时
+  countDowning = false;
 
-  @Output()
-  beDone = new EventEmitter<void>();
+  /** 登录表单对象 */
+  registerForm: FormGroup = new FormGroup({});
 
-  constructor(private userService: UserService,
-              private builder: FormBuilder,
+  /** 错误信息 */
+  errorInfo: string | undefined;
+
+
+  constructor(private builder: FormBuilder,
+              private userService: UserService,
+              private router: Router,
               private commonService: CommonService) {
+    /** 创建登录表单 */
+    this.registerForm.addControl(this.keys.username, new FormControl('',
+      [Validators.minLength(5),
+        Validators.required]));
+    this.registerForm.addControl(this.keys.password, new FormControl('', Validators.required));
+    this.registerForm.addControl(this.keys.name, new FormControl('', Validators.minLength(2)));
   }
 
   ngOnInit(): void {
-    /** 创建注册表单 */
-    this.registerForm = this.builder.group({
-      registerUsername: ['', [
-        Validators.required]],
-      name: ['', [Validators.minLength(1),
-        Validators.maxLength(100),
-        // Validators.pattern('\\w+'),
-        Validators.required]],
-      num: ['', [Validators.minLength(4),
-        Validators.maxLength(18),
-        Validators.pattern('\\w+'),
-        Validators.required]],
-      verificationCode: ['', Validators.required],
-    });
+    console.log("初始化执行register");
   }
 
-  onRegister(): void {
-    this.userService.bind({
-      name: this.registerForm.get('name').value,
-      username: this.registerForm.get('registerUsername').value,
-      num: this.registerForm.get('num').value,
-      verificationCode: this.registerForm.get('verificationCode').value
+  onRegister() {
+    // console.log(this.registerForm.get(this.keys.username).value);
+    // console.log(this.registerForm.get(this.keys.password).value);
+    // console.log(this.registerForm.get(this.keys.name).value);
+    this.userService.register({
+      username: this.registerForm.get(this.keys.username).value,
+      password: this.registerForm.get(this.keys.password).value,
+      name: this.registerForm.get(this.keys.name).value,
     })
-      .subscribe((backUser: User) => {
+      .subscribe(() => {
         this.commonService.success(() => {
-          this.beDone.emit();
-        }, '您的密码为' + backUser.password + ', 请牢记');
-      }, () => {
-        this.commonService.error(() => {
-        }, '用户绑定失败');
+          this.commonService.back()
+        });
       });
   }
-
 }
