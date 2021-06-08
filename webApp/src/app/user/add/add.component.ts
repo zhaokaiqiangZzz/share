@@ -5,6 +5,7 @@ import {CommonService} from '../../../service/common.service';
 import {UserService} from '../../../service/user.service';
 import { YzValidator } from '../../../validator/yz-validator';
 import { YzAsyncValidators } from '../../../validator/yz-async.validators';
+import { Role } from '../../../entity/role';
 
 @Component({
   selector: 'app-add',
@@ -15,7 +16,8 @@ export class AddComponent implements OnInit {
 
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    username: new FormControl('', YzValidator.phone, this.yzAsyncValidators.usernameExist())
+    username: new FormControl('', YzValidator.phone, this.yzAsyncValidators.usernameExist()),
+    roleId: new FormControl('', Validators.required),
   });
 
   constructor(private commonService: CommonService,
@@ -29,7 +31,10 @@ export class AddComponent implements OnInit {
   onSubmit(formGroup: FormGroup): void {
     const user = new User({
       name: formGroup.get('name')?.value,
-      username: formGroup.get('username')?.value
+      username: formGroup.get('username')?.value,
+      role: new Role({
+        id: formGroup.get('roleId').value
+      })
     });
 
     this.userService.save(user)

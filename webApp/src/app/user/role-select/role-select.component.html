@@ -1,0 +1,5 @@
+<select class="form-control" [formControl]="roleSelect">
+  <option  *ngFor="let role of roles" [ngValue]="role.id">
+    {{role.name}}
+  </option>
+</select>

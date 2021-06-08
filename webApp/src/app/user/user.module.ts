@@ -9,10 +9,11 @@ import { SizeModule } from '../../common/size/size.module';
 import { PageModule } from '../../common/page/page.module';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import { RoleSelectComponent } from './role-select/role-select.component';
 
 
 @NgModule({
-  declarations: [UserComponent, AddComponent, EditComponent],
+  declarations: [UserComponent, AddComponent, EditComponent, RoleSelectComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
