@@ -1,6 +1,7 @@
 package com.xiaoqiangZzz.share.service;
 
 import com.xiaoqiangZzz.share.Utils;
+import com.xiaoqiangZzz.share.entity.Authority;
 import com.xiaoqiangZzz.share.entity.Role;
 import com.xiaoqiangZzz.share.entity.User;
 import com.xiaoqiangZzz.share.repository.UserRepository;
@@ -189,9 +190,9 @@ public class UserServiceImpl implements UserService, UserDetailsService, Auditor
 
     // 设置用户角色
     List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//    for (Role role: user.getRoles()) {
-//      authorities.add(new SimpleGrantedAuthority(role.getValue()));
-//    }
+    for (Authority authority: user.getRole().getAuthorityList()) {
+      authorities.add(new SimpleGrantedAuthority(authority.getValue()));
+    }
     return new UserDetail(user,true, authorities);
   }
 

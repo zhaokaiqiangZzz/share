@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,17 +23,20 @@ public class RoleController {
 
   @PostMapping
   @JsonView(AddJsonView.class)
+  @Secured("ROLE_ADD")
   public Role add(@RequestBody Role role) {
     return this.roleService.add(role);
   }
 
   @DeleteMapping("{id}")
+  @Secured("ROLE_DELETE")
   public void delete(@PathVariable Long id) {
     this.roleService.delete(id);
   }
 
   @GetMapping("{id}")
   @JsonView(GetByIdJsonView.class)
+  @Secured("ROLE_VIEW")
   public Role getById(@PathVariable Long id) {
     return this.roleService.getById(id);
   }
@@ -45,6 +49,7 @@ public class RoleController {
 
   @GetMapping("page")
   @JsonView(PageJsonView.class)
+  @Secured("ROLE_VIEW")
   public Page<Role> page(
       @RequestParam(required = false, defaultValue = "") String name,
       @SortDefault.SortDefaults(@SortDefault(sort = "id", direction = Sort.Direction.DESC))
@@ -54,6 +59,7 @@ public class RoleController {
 
   @PutMapping("{id}")
   @JsonView(UpdateJsonView.class)
+  @Secured("ROLE_EDIT")
   public Role update(@PathVariable Long id, @RequestBody Role role) {
     return this.roleService.update(id, role);
   }
