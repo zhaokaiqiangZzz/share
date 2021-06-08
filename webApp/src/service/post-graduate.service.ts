@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class PostGraduateService {
 
-  private baseUrl = 'post';
+  private baseUrl = 'postGraduate';
 
   constructor(private httpClient: HttpClient) {
   }

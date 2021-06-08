@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get(this.keys.password).value
     }).subscribe(() => {
         this.userService.initCurrentLoginUser(() => {
-          this.router.navigateByUrl('/user').then();
+          this.router.navigateByUrl('/personal').then();
         });
       }, (response) => {
         const errorCode = +response.headers.get(config.ERROR_RESPONSE_CODE_KEY);

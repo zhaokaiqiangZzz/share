@@ -7,6 +7,7 @@ import { stringToIntegerNumber } from '../../common/utils';
 import { config } from '../../conf/app.config';
 import { Post } from '../../entity/post';
 import { CommonService } from '../../service/common.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-job',
@@ -16,6 +17,8 @@ import { CommonService } from '../../service/common.service';
 export class JobComponent implements OnInit {
 
   pageData = {} as Page<Post>;
+
+  imageApi = environment.imageUrl + '/';
 
   private params: Params;
 
