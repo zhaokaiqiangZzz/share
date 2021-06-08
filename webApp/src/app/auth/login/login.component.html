@@ -12,5 +12,8 @@
       <input type="password" [formControlName]="keys.password" class="form-control" placeholder="请输入您的密码" id="password">
     </div>
     <button type="submit" class="btn btn-block py-2 btn-primary" [disabled]="loginForm.invalid">登录</button>
+    <div class="col-12 text-center">
+      <a routerLink="register">注册</a>
+    </div>
   </form>
 </div>

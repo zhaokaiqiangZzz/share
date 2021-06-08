@@ -46,6 +46,13 @@ public class UserController {
         .orElseThrow(() -> new EntityNotFoundException("未在数据库中找到用户，这可能是当前用户被删除导致的"));
   }
 
+  @RequestMapping("register")
+  @JsonView(RegisterJsonView.class)
+  public void register(@RequestBody User newUser) {
+    this.userService.register(newUser);
+  }
+
+
   @GetMapping("currentLoginUser")
   @JsonView(GetCurrentLoginUserJsonView.class)
   public User getCurrentLoginUser() {
@@ -138,6 +145,9 @@ public class UserController {
   }
 
   public interface GetByIdJsonView extends User.RolesJsonView {
+  }
+
+  public interface RegisterJsonView extends User.RolesJsonView {
   }
 
 }

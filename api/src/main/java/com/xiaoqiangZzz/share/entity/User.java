@@ -11,7 +11,7 @@ import javax.persistence.*;
  * 用户实体.
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"username", "deleteAt"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {}))
 @SQLDelete(sql = "update `user` set deleted = 1, delete_at = UNIX_TIMESTAMP() where id = ?")
 @Where(clause = "deleted = false")
 public class User extends BaseEntity {
@@ -22,12 +22,6 @@ public class User extends BaseEntity {
   public static final String DEFAULT_PASSWORD = "hebut";
 
   private static PasswordEncoder passwordEncoder;
-  /**
-   * 用户状态.
-   */
-  public static Integer STATUS_FROZEN = 0;
-  public static Integer STATUS_NORMAL = 1;
-
 
   @JsonView(PasswordJsonView.class)
   private String password;
@@ -39,6 +33,7 @@ public class User extends BaseEntity {
    * 角色.
    */
   @ManyToOne
+  @JoinColumn(nullable = false)
   private Role role;
 
   @Column(nullable = false)

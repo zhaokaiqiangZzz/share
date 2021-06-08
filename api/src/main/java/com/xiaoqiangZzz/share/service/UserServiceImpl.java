@@ -3,6 +3,7 @@ package com.xiaoqiangZzz.share.service;
 import com.xiaoqiangZzz.share.Utils;
 import com.xiaoqiangZzz.share.entity.Role;
 import com.xiaoqiangZzz.share.entity.User;
+import com.xiaoqiangZzz.share.repository.RoleRepository;
 import com.xiaoqiangZzz.share.repository.UserRepository;
 import com.xiaoqiangZzz.share.vo.BindingUser;
 import com.xiaoqiangZzz.share.vo.PasswordUser;
@@ -14,9 +15,7 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.AuditorAware;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,6 +31,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Timestamp;
 import java.util.*;
+import java.util.function.ToLongFunction;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,7 +41,10 @@ public class UserServiceImpl implements UserService, UserDetailsService, Auditor
 
   private final UserRepository userRepository;
 
-  public UserServiceImpl(UserRepository userRepository) {
+  private final RoleRepository roleRepository;
+
+  public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    this.roleRepository = roleRepository;
     this.userRepository = userRepository;
   }
 
@@ -157,6 +160,14 @@ public class UserServiceImpl implements UserService, UserDetailsService, Auditor
   @Override
   public void delete(Long id) {
     this.userRepository.deleteById(id);
+  }
+
+  @Override
+  public void register(User newUser) {
+    List<Role> roles = this.roleRepository.findAll();
+    Role role = roles.get(1);
+    newUser.setRole(role);
+    this.userRepository.save(newUser);
   }
 
   @Override

@@ -1,36 +1,20 @@
 <div class="form-block mx-auto">
   <div class="text-center mb-5">
-    <h3 class="text-uppercase">Create your account</h3>
+    <h3 class="text-success">Register</h3>
   </div>
-  <form>
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
     <div class="form-group first">
-      <label for="name"><code>*</code>Name</label>
-      <input type="text" class="form-control" placeholder="your-email@gmail.com" id="name">
-    </div>
-    <div class="form-group">
-      <label for="username"><code>*</code>Email</label>
-      <input type="text" class="form-control" placeholder="your-email@gmail.com" id="username">
+      <label for="username">用户名</label>
+      <input type="text" [formControlName]="keys.username" class="form-control" placeholder="请输入您的用户名" id="username">
     </div>
     <div class="form-group last mb-3">
-      <label for="password"><code>*</code>Password</label>
-      <input type="password" class="form-control" placeholder="Your Password" id="password">
+      <label for="password">密码</label>
+      <input type="password" [formControlName]="keys.password" class="form-control" placeholder="请输入您的密码" id="password">
     </div>
     <div class="form-group last mb-3">
-      <label for="repassword"><code>*</code>Re-type Password</label>
-      <input type="repassword" class="form-control" placeholder="Your Password" id="repassword">
+      <label for="password">姓名</label>
+      <input type="password" [formControlName]="keys.name" class="form-control" placeholder="请输入您的姓名" id="name">
     </div>
-    <div class="d-sm-flex mb-5 align-items-center">
-      <label class="control control--checkbox mb-3 mb-sm-0">
-        <span>I agree to the Terms of Use and Privacy Policy</span>
-        <input type="checkbox" checked="">
-        <div class="control__indicator"></div>
-      </label>
-    </div>
-    <a routerLink="/" class="btn btn-block py-2 btn-primary">Sign Up</a>
-    <span class="text-center my-3 d-block">or</span>
-    <div class="align-items-center text-center">
-      <span class="col-6"><a routerLink="/">Log In</a></span>
-      <span class="col-6"><a href="#">Learn more</a></span>
-    </div>
+    <button type="submit" class="btn btn-block py-2 btn-primary" [disabled]="registerForm.invalid">注册</button>
   </form>
 </div>
