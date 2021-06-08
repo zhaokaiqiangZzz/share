@@ -93,6 +93,12 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent>, Ord
     List<Menu> adminRoleMenus = new ArrayList<>();
     adminRoleMenus.add(userMenu);
     adminRoleMenus.add(roleMenu);
+    adminRoleMenus.add(jobMenu);
+    adminRoleMenus.add(postGraduateMenu);
+    adminRoleMenus.add(highEntranceMenu);
+    adminRoleMenus.add(competitionMenu);
+    adminRoleMenus.add(personalMenu);
+
     List<Authority> adminRoleAuthoritys = new ArrayList<>();
     adminRoleAuthoritys.add(userAddAuthority);
     adminRoleAuthoritys.add(userReadAuthority);
