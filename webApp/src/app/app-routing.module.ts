@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {LayoutComponent} from './layout/layout.component';
 
 const routes: Routes = [
   {
@@ -29,6 +29,13 @@ const routes: Routes = [
         data: {
           title: '角色管理'
         }
+      },
+      {
+        path: 'personal',
+        loadChildren: () => import('./personal/teacher-personal.module').then(m => m.TeacherPersonalModule),
+        data: {
+          title: '个人中心'
+        }
       }
     ]
   }
@@ -38,4 +45,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
