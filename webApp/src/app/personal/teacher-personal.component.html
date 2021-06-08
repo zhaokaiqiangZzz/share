@@ -1,0 +1,19 @@
+<div class="container-md" *ngIf="user">
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-4 text-right"> 姓名:</div>
+    <div class="col-8 ">{{ user?.name }}</div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-4 text-right">
+      手机号:
+    </div>
+    <div class="col-8">
+      {{ user?.username }}
+    </div>
+    <br>
+  </div>
+  <div class="offset-4 col-5" style="margin-top: 20px">
+    <a href="" class="btn btn-primary btn-sm" routerLink="modifyPassword">
+      <i class="fas fa-edit"></i>修改密码</a></div>
+</div>
