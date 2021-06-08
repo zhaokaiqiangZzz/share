@@ -57,6 +57,7 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent>, Ord
     Menu postGraduateMenu = this.menuService.initMenu("考研保研", "postGraduate");
     Menu highEntranceMenu = this.menuService.initMenu("高考咨询", "highEntrance");
     Menu competitionMenu = this.menuService.initMenu("竞赛信息", "competitionMenu");
+    Menu personalMenu = this.menuService.initMenu("个人中心", "personal");
 
 
     Authority userAddAuthority = this.authorityService.initAuthority("用户增加", "USER_ADD", userMenu);
