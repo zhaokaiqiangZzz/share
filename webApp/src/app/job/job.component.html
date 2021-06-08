@@ -1,0 +1,10 @@
+<div class="row mb-2">
+  <div class="col-12 text-right">
+    <a class="btn btn-primary" routerLink="add"><i class="fas fa-plus"></i>&nbsp;新增</a>
+  </div>
+</div>
+
+<app-page [page]="pageData.number"
+          [size]="pageData.size"
+          [totalElements]="pageData.totalElements"
+          (changePage)="onPageChange($event)"></app-page>
