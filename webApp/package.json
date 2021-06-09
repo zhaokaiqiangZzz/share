@@ -21,6 +21,7 @@
     "@angular/router": "~10.1.5",
     "@yunzhi/ng-mock-api": "0.0.5",
     "bootstrap": "^4.3.1",
+    "bootstrap-fileinput": "^5.2.1",
     "file-saver": "~2.0.1",
     "jasmine-marbles": "~0.8.1",
     "jquery": "^1.12.4",

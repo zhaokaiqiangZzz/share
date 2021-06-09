@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -99,12 +100,14 @@ public class UserController {
 
   @GetMapping("{id}")
   @JsonView(GetByIdJsonView.class)
+  @Secured("USER_VIEW")
   public User getById(@PathVariable Long id) {
     return this.userService.getById(id);
   }
 
   @GetMapping("page")
   @JsonView(PageJsonView.class)
+  @Secured("USER_VIEW")
   public Page<User> page(
       @RequestParam(required = false, defaultValue = "") String name,
       @SortDefault.SortDefaults(@SortDefault(sort = "id", direction = Sort.Direction.DESC))
@@ -114,17 +117,20 @@ public class UserController {
 
   @PostMapping
   @JsonView(AddJsonView.class)
+  @Secured("USER_ADD")
   public User add(@RequestBody User user) {
     return this.userService.add(user);
   }
 
   @PutMapping("{id}")
+  @Secured("USER_EDIT")
   @JsonView(UpdateJsonView.class)
   public User update(@PathVariable Long id, @RequestBody User user) {
     return this.userService.update(id, user);
   }
 
   @DeleteMapping("{id}")
+  @Secured("USER_DELETE")
   public void delete(@PathVariable Long id) {
     this.userService.delete(id);
   }

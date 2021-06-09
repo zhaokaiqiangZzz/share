@@ -14,7 +14,7 @@ export class Post {
 
   type: number;
 
-  attachments: Array<Attachment>;
+  attachments: Array<Attachment> = new Array<Attachment>();
 
   createUser: User;
 

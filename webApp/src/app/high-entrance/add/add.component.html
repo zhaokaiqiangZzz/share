@@ -1,1 +1,74 @@
-<p>add works!</p>
+<form class="container-sm" (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+  <div class="form-group row">
+    <label  class="col-3 text-right col-form-label">名称<code>*</code></label>
+    <div class="col-5">
+      <input type="text" class="form-control" formControlName="title">
+      <small class="text-danger"
+             *ngIf="formGroup.get('title')!.touched && formGroup.get('title')!.invalid">
+        必填项
+      </small>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label class="col-3 text-right col-form-label">描述<code>*</code></label>
+    <div class="col-sm-5">
+      <textarea class="form-control" rows="10" cols="68" formControlName="content"></textarea>
+      <small class="text-danger"
+             *ngIf="formGroup.get('content')!.touched && formGroup.get('content')!.invalid">
+        必填项
+      </small>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-3 col-form-label text-right">图片</label>
+    <div class="col-sm-7">
+      <img class="upload-img" src="{{imageUrl}}">
+      <span (click)="showImageComponent = true" class="text-info">
+        <i class="fas fa-upload"></i>上传
+      </span>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-3 col-form-label text-right">附件</label>
+    <div class="col-sm-7">
+      <span (click)="showFileComponent = true" class="text-info">
+        <i class="fas fa-upload"></i>上传
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-7 offset-3">
+        <span *ngFor="let attachment of post.attachments; index as i">
+          {{attachment.originName}}.{{attachment.ext}}
+          <span (click)="onAttachmentDelete(i)" class="btn-outline-danger"> <i
+            class="fas fa-trash"></i></span>
+          <br>
+        </span>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-10 offset-5">
+      <button class="btn btn-primary" [disabled]="formGroup!.invalid"><i class="far fa-save"></i>&nbsp;保存</button>
+    </div>
+  </div>
+</form>
+
+<app-yz-uploader *ngIf="showFileComponent"
+                 [multiple]="true"
+                 accept="*"
+                 (beUpload)="onImported($event)"
+                 (beCancel)="onImportCancel()"
+                 class=" align-items-center justify-content-center ">
+</app-yz-uploader>
+
+<app-image-upload *ngIf="showImageComponent"
+                  [multiple]="false"
+                  accept="image/*"
+                  (beUpload)="onImageImported($event)"
+                  (beCancel)="onImageImportCancel()"
+                  class=" align-items-center justify-content-center ">
+</app-image-upload>

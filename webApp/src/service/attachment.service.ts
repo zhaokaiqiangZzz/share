@@ -40,4 +40,11 @@ export class AttachmentService {
     return this.httpClient.post(`${this.url}/upload`,
       formData, {reportProgress: true, observe: 'events'});
   }
+
+  uploadImage(file: File): Observable<HttpEvent<object>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    return this.httpClient.post(`${this.url}/uploadImage`,
+      formData, {reportProgress: true, observe: 'events'});
+  }
 }

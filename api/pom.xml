@@ -103,11 +103,10 @@
 			<version>2.0.1.Final</version>
 		</dependency>
 
-		<!-- 阿里云短信提醒 -->
 		<dependency>
-			<groupId>com.aliyun</groupId>
-			<artifactId>aliyun-java-sdk-core</artifactId>
-			<version>4.0.3</version>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.0</version>
 		</dependency>
 	</dependencies>
 

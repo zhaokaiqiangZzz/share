@@ -3,6 +3,7 @@ package com.xiaoqiangZzz.share.entity;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Menu extends BaseEntity {
   private String name;
   private String router;
 
-  @OneToMany(mappedBy = "menu")
+  @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
   @JsonView(AuthorityListJsonView.class)
   private List<Authority> authorityList = new ArrayList<>();
 

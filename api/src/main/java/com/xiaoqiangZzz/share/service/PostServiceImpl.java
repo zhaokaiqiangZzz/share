@@ -6,14 +6,17 @@ import com.xiaoqiangZzz.share.repository.PostRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class PostServiceImpl implements PostService {
 
   private final PostRepository postRepository;
+  private final CommonService commonService;
 
-  public PostServiceImpl(PostRepository postRepository) {
+  public PostServiceImpl(PostRepository postRepository, CommonService commonService) {
     this.postRepository = postRepository;
+    this.commonService = commonService;
   }
 
   @Override

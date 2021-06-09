@@ -32,7 +32,9 @@ export class EditComponent implements OnInit {
     this.formGroup.addControl(this.keys.name,
       new FormControl('', [Validators.required]));
     this.formGroup.addControl(this.keys.username,
-      new FormControl(''));
+      new FormControl('', [Validators.required]));
+    this.formGroup.addControl('roleId',
+      new FormControl('', [Validators.required]));
 
     this.route.params.subscribe(param => {
       const id = +param.id;
@@ -54,6 +56,7 @@ export class EditComponent implements OnInit {
     this.user = user;
     this.formGroup.get(this.keys.name).setValue(user.name);
     this.formGroup.get(this.keys.username).setValue(user.username);
+    this.formGroup.get('roleId').setValue(user.role.id);
   }
 
   onSubmit(formGroup: FormGroup): void {

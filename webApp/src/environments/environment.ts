@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   color: '#1755A6',
   title: '知识共享平台',
-  apiUrl: 'http://localhost:8002',
+  apiUrl: 'http://localhost:8102/api',
+  imageUrl: 'http://localhost:8102',
   defaultPassword: 'hebut',
   size: 5
 };

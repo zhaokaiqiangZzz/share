@@ -6,6 +6,7 @@
     "outDir": "./dist/out-tsc",
     /** 关闭对null与undefined的严格检查 */
     "strictNullChecks": false,
+    "allowJs": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,

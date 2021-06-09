@@ -1,5 +1,6 @@
 package com.xiaoqiangZzz.share.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedBy;
@@ -20,6 +21,13 @@ import java.util.List;
 @Where(clause = "deleted = false")
 @EntityListeners(AuditingEntityListener.class)
 public class Post extends BaseEntity {
+  public Integer getType() {
+    return type;
+  }
+
+  public void setType(Integer type) {
+    this.type = type;
+  }
 
   public static Integer TYPE_JOB = 0;
   public static Integer TYPE_POST_GRADUATE = 1;
@@ -39,6 +47,7 @@ public class Post extends BaseEntity {
 
   @CreatedBy
   @ManyToOne
+  @JsonView(UserJsonView.class)
   private User createUser;
 
   public String getTitle() {
@@ -79,5 +88,8 @@ public class Post extends BaseEntity {
 
   public void setImageUrl(String imageUrl) {
     this.imageUrl = imageUrl;
+  }
+
+  public interface UserJsonView {
   }
 }
