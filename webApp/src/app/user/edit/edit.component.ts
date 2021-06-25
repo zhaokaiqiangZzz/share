@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {Assert} from '../../../common/utils';
 import {UserService} from '../../../service/user.service';
+import { Role } from '../../../entity/role';
 
 /**
  * 编辑教师（用户）.
@@ -60,10 +61,15 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit(formGroup: FormGroup): void {
-    this.userService.update(this.user.id, {
-      name: formGroup.get(this.keys.name).value,
-      username: formGroup.get(this.keys.username).value,
-    }).subscribe(() => {
+    const user = new User({
+      name: formGroup.get('name')?.value,
+      username: formGroup.get('username')?.value,
+      role: new Role({
+        id: formGroup.get('roleId').value
+      })
+    });
+
+    this.userService.update(this.user.id, user).subscribe(() => {
       },
       () => {
       },
