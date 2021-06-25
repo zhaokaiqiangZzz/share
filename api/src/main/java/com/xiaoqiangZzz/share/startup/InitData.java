@@ -5,6 +5,7 @@ import com.xiaoqiangZzz.share.entity.Menu;
 import com.xiaoqiangZzz.share.entity.Role;
 import com.xiaoqiangZzz.share.entity.User;
 import com.xiaoqiangZzz.share.repository.UserRepository;
+import com.xiaoqiangZzz.share.security.SecurityRole;
 import com.xiaoqiangZzz.share.service.AuthorityService;
 import com.xiaoqiangZzz.share.service.MenuService;
 import com.xiaoqiangZzz.share.service.RoleService;
@@ -60,35 +61,35 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent>, Ord
     Menu personalMenu = this.menuService.initMenu("个人中心", "personal");
 
 
-    Authority userAddAuthority = this.authorityService.initAuthority("用户增加", "USER_ADD", userMenu);
-    Authority userReadAuthority = this.authorityService.initAuthority("用户查看", "USER_VIEW", userMenu);
-    Authority userEditAuthority = this.authorityService.initAuthority("用户编辑", "USER_EDIT", userMenu);
-    Authority userDELETEAuthority = this.authorityService.initAuthority("用户删除", "USER_DELETE", userMenu);
+    Authority userAddAuthority = this.authorityService.initAuthority("用户增加", SecurityRole.USER_ADD, userMenu);
+    Authority userReadAuthority = this.authorityService.initAuthority("用户查看", SecurityRole.USER_VIEW, userMenu);
+    Authority userEditAuthority = this.authorityService.initAuthority("用户编辑", SecurityRole.USER_EDIT, userMenu);
+    Authority userDELETEAuthority = this.authorityService.initAuthority("用户删除", SecurityRole.USER_DELETE, userMenu);
 
-    Authority roleAddAuthority = this.authorityService.initAuthority("角色增加", "ROLE_ADD", roleMenu);
-    Authority roleReadAuthority = this.authorityService.initAuthority("角色查看", "ROLE_VIEW", roleMenu);
-    Authority roleEditAuthority = this.authorityService.initAuthority("角色编辑", "ROLE_EDIT", roleMenu);
-    Authority roleDELETEAuthority = this.authorityService.initAuthority("角色删除", "ROLE_DELETE", roleMenu);
+    Authority roleAddAuthority = this.authorityService.initAuthority("角色增加", SecurityRole.ROLE_ADD, roleMenu);
+    Authority roleReadAuthority = this.authorityService.initAuthority("角色查看", SecurityRole.ROLE_VIEW, roleMenu);
+    Authority roleEditAuthority = this.authorityService.initAuthority("角色编辑", SecurityRole.ROLE_EDIT, roleMenu);
+    Authority roleDELETEAuthority = this.authorityService.initAuthority("角色删除", SecurityRole.ROLE_DELETE, roleMenu);
 
-    Authority jobAddAuthority = this.authorityService.initAuthority("就业招聘增加", "JOB_ADD", jobMenu);
-    Authority jobReadAuthority = this.authorityService.initAuthority("就业招聘查看", "JOB_VIEW", jobMenu);
-    Authority jobEditAuthority = this.authorityService.initAuthority("就业招聘编辑", "JOB_EDIT", jobMenu);
-    Authority jobDELETEAuthority = this.authorityService.initAuthority("就业招聘删除", "JOB_DELETE", jobMenu);
+    Authority jobAddAuthority = this.authorityService.initAuthority("就业招聘增加", SecurityRole.JOB_ADD, jobMenu);
+    Authority jobReadAuthority = this.authorityService.initAuthority("就业招聘查看", SecurityRole.JOB_VIEW, jobMenu);
+    Authority jobEditAuthority = this.authorityService.initAuthority("就业招聘编辑", SecurityRole.JOB_EDIT, jobMenu);
+    Authority jobDELETEAuthority = this.authorityService.initAuthority("就业招聘删除", SecurityRole.JOB_DELETE, jobMenu);
 
-    Authority postGraduateAddAuthority = this.authorityService.initAuthority("考研保研增加", "POST_GRADUATE_ADD", postGraduateMenu);
-    Authority postGraduateReadAuthority = this.authorityService.initAuthority("考研保研查看", "POST_GRADUATE_VIEW", postGraduateMenu);
-    Authority postGraduateEditAuthority = this.authorityService.initAuthority("考研保研编辑", "POST_GRADUATE_EDIT", postGraduateMenu);
-    Authority postGraduateDELETEAuthority = this.authorityService.initAuthority("考研保研删除", "POST_GRADUATE_DELETE", postGraduateMenu);
+    Authority postGraduateAddAuthority = this.authorityService.initAuthority("考研保研增加", SecurityRole.POST_GRADUATE_ADD, postGraduateMenu);
+    Authority postGraduateReadAuthority = this.authorityService.initAuthority("考研保研查看", SecurityRole.POST_GRADUATE_VIEW, postGraduateMenu);
+    Authority postGraduateEditAuthority = this.authorityService.initAuthority("考研保研编辑", SecurityRole.POST_GRADUATE_EDIT, postGraduateMenu);
+    Authority postGraduateDELETEAuthority = this.authorityService.initAuthority("考研保研删除", SecurityRole.POST_GRADUATE_DELETE, postGraduateMenu);
 
-    Authority highEntranceAddAuthority = this.authorityService.initAuthority("高考咨询增加", "HIGH_ENTRANCE_ADD", highEntranceMenu);
-    Authority highEntranceReadAuthority = this.authorityService.initAuthority("高考咨询查看", "HIGH_ENTRANCE_VIEW", highEntranceMenu);
-    Authority highEntranceEditAuthority = this.authorityService.initAuthority("高考咨询编辑", "HIGH_ENTRANCE_EDIT", highEntranceMenu);
-    Authority highEntranceDELETEAuthority = this.authorityService.initAuthority("高考咨询删除", "HIGH_ENTRANCE_DELETE", highEntranceMenu);
+    Authority highEntranceAddAuthority = this.authorityService.initAuthority("高考咨询增加", SecurityRole.HIGH_ENTRANCE_ADD, highEntranceMenu);
+    Authority highEntranceReadAuthority = this.authorityService.initAuthority("高考咨询查看", SecurityRole.HIGH_ENTRANCE_VIEW, highEntranceMenu);
+    Authority highEntranceEditAuthority = this.authorityService.initAuthority("高考咨询编辑", SecurityRole.HIGH_ENTRANCE_EDIT, highEntranceMenu);
+    Authority highEntranceDELETEAuthority = this.authorityService.initAuthority("高考咨询删除", SecurityRole.HIGH_ENTRANCE_DELETE, highEntranceMenu);
 
-    Authority competitionAddAuthority = this.authorityService.initAuthority("竞赛信息增加", "COMPETITION_ADD", competitionMenu);
-    Authority competitionReadAuthority = this.authorityService.initAuthority("竞赛信息查看", "COMPETITION_VIEW", competitionMenu);
-    Authority competitionEditAuthority = this.authorityService.initAuthority("竞赛信息编辑", "COMPETITION_EDIT", competitionMenu);
-    Authority competitionDELETEAuthority = this.authorityService.initAuthority("竞赛信息删除", "COMPETITION_DELETE", competitionMenu);
+    Authority competitionAddAuthority = this.authorityService.initAuthority("竞赛信息增加", SecurityRole.COMPETITION_ADD, competitionMenu);
+    Authority competitionReadAuthority = this.authorityService.initAuthority("竞赛信息查看", SecurityRole.COMPETITION_VIEW, competitionMenu);
+    Authority competitionEditAuthority = this.authorityService.initAuthority("竞赛信息编辑", SecurityRole.COMPETITION_EDIT, competitionMenu);
+    Authority competitionDELETEAuthority = this.authorityService.initAuthority("竞赛信息删除", SecurityRole.COMPETITION_DELETE, competitionMenu);
 
     List<Menu> adminRoleMenus = new ArrayList<>();
     adminRoleMenus.add(userMenu);

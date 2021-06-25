@@ -1,1 +1,30 @@
-<p>view works!</p>
+<div class="form-group row">
+  <label  class="col-3 text-right col-form-label">名称</label>
+  <div class="col-5">
+    <h3>{{post?.title}}</h3>
+  </div>
+</div>
+<div class="form-group row mb-3">
+  <label class="col-3 text-right col-form-label">描述</label>
+  <div class="col-sm-5">
+    <p>{{post?.content}}</p>
+  </div>
+</div>
+
+<div class="mb-3 row">
+  <label class="col-3 col-form-label text-right">图片</label>
+  <div class="col-sm-7">
+    <img class="upload-img" src="{{imageUrl}}">
+  </div>
+</div>
+
+<div class="mb-3 row">
+  <label class="col-3 col-form-label text-right">附件</label>
+  <div class="col-sm-7">
+    <div *ngFor="let attachment of post?.attachments; index as i">
+  <span (click)="onDownloadAttachment(attachment, i + 1)"
+        class="btn-outline-info" style="cursor: pointer">
+          <i class="fas fa-download"></i>{{ attachment.originName }}</span>
+    </div>
+  </div>
+</div>

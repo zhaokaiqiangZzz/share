@@ -4,6 +4,7 @@ import com.xiaoqiangZzz.share.config.MvcSecurityConfig;
 import com.xiaoqiangZzz.share.entity.Role;
 import com.xiaoqiangZzz.share.entity.User;
 import com.xiaoqiangZzz.share.repository.UserRepository;
+import com.xiaoqiangZzz.share.security.SecurityRole;
 import com.xiaoqiangZzz.share.service.UserService;
 import com.xiaoqiangZzz.share.vo.PasswordUser;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -100,14 +101,14 @@ public class UserController {
 
   @GetMapping("{id}")
   @JsonView(GetByIdJsonView.class)
-  @Secured("USER_VIEW")
+  @Secured(SecurityRole.USER_VIEW)
   public User getById(@PathVariable Long id) {
     return this.userService.getById(id);
   }
 
   @GetMapping("page")
   @JsonView(PageJsonView.class)
-  @Secured("USER_VIEW")
+  @Secured(SecurityRole.USER_VIEW)
   public Page<User> page(
       @RequestParam(required = false, defaultValue = "") String name,
       @SortDefault.SortDefaults(@SortDefault(sort = "id", direction = Sort.Direction.DESC))
@@ -117,20 +118,20 @@ public class UserController {
 
   @PostMapping
   @JsonView(AddJsonView.class)
-  @Secured("USER_ADD")
+  @Secured(SecurityRole.USER_ADD)
   public User add(@RequestBody User user) {
     return this.userService.add(user);
   }
 
   @PutMapping("{id}")
-  @Secured("USER_EDIT")
+  @Secured(SecurityRole.USER_EDIT)
   @JsonView(UpdateJsonView.class)
   public User update(@PathVariable Long id, @RequestBody User user) {
     return this.userService.update(id, user);
   }
 
   @DeleteMapping("{id}")
-  @Secured("USER_DELETE")
+  @Secured(SecurityRole.USER_DELETE)
   public void delete(@PathVariable Long id) {
     this.userService.delete(id);
   }

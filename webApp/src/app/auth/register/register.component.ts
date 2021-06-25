@@ -43,21 +43,16 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("初始化执行register");
   }
 
-  onRegister() {
-    // console.log(this.registerForm.get(this.keys.username).value);
-    // console.log(this.registerForm.get(this.keys.password).value);
-    // console.log(this.registerForm.get(this.keys.name).value);
+  onRegister(): void {
     this.userService.register({
       username: this.registerForm.get(this.keys.username).value,
       password: this.registerForm.get(this.keys.password).value,
       name: this.registerForm.get(this.keys.name).value,
-    })
-      .subscribe(() => {
+    }).subscribe(() => {
         this.commonService.success(() => {
-          this.commonService.back()
+          this.commonService.back();
         });
       });
   }
