@@ -1,14 +1,14 @@
-import {Injectable} from '@angular/core';
-import {Observable, of, ReplaySubject} from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {User} from '../entity/user';
-import {catchError, map, tap} from 'rxjs/operators';
-import {AbstractControl, AsyncValidatorFn, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AppOnReadyItem, CommonService} from './common.service';
-import {Assert, isNotNullOrUndefined, Random} from '../common/utils';
-import {Page} from '../common/page';
-import {HttpSuccessResponse} from '../common/http-success-response';
+import { Injectable } from '@angular/core';
+import { Observable, of, ReplaySubject } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { User } from '../entity/user';
+import { catchError, map, tap } from 'rxjs/operators';
+import { AbstractControl, AsyncValidatorFn, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AppOnReadyItem, CommonService } from './common.service';
+import { Assert, isNotNullOrUndefined, Random } from '../common/utils';
+import { Page } from '../common/page';
+import { HttpSuccessResponse } from '../common/http-success-response';
 
 @Injectable({
   providedIn: 'root'
@@ -294,7 +294,7 @@ export class UserService {
   /**
    * 更新
    */
-  public update(userId: number, user: { username: string, name: string }): Observable<User> {
+  public update(userId: number, user: User): Observable<User> {
     Assert.isNumber(userId, 'userId must be number');
     Assert.isNotNullOrUndefined(user, user.name, user.username,
       'some properties must be passed');
