@@ -1,19 +1,11 @@
 package com.xiaoqiangZzz.share.service;
 
-import com.xiaoqiangZzz.share.Utils;
 import com.xiaoqiangZzz.share.entity.Authority;
 import com.xiaoqiangZzz.share.entity.Role;
 import com.xiaoqiangZzz.share.entity.User;
 import com.xiaoqiangZzz.share.repository.RoleRepository;
 import com.xiaoqiangZzz.share.repository.UserRepository;
-import com.xiaoqiangZzz.share.vo.BindingUser;
-import com.xiaoqiangZzz.share.vo.PasswordUser;
-import com.xiaoqiangZzz.share.vo.StatusUser;
 import com.mengyunzhi.core.exception.ObjectNotFoundException;
-import net.bytebuddy.utility.RandomString;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.*;
@@ -24,16 +16,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import javax.persistence.EntityNotFoundException;
 import javax.xml.bind.ValidationException;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.sql.Timestamp;
 import java.util.*;
-import java.util.function.ToLongFunction;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService, AuditorAware<User> {
@@ -44,9 +31,12 @@ public class UserServiceImpl implements UserService, UserDetailsService, Auditor
 
   private final RoleRepository roleRepository;
 
-  public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+  private final RoleService roleService;
+
+  public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, RoleService roleService) {
     this.roleRepository = roleRepository;
     this.userRepository = userRepository;
+    this.roleService = roleService;
   }
 
   @Override
@@ -146,6 +136,8 @@ public class UserServiceImpl implements UserService, UserDetailsService, Auditor
 
   @Override
   public User add(User user) {
+    Role role = this.roleService.getById(user.getRole().getId());
+    user.setRole(role);
     return this.userRepository.save(user);
   }
 
@@ -153,7 +145,8 @@ public class UserServiceImpl implements UserService, UserDetailsService, Auditor
   public User update(Long id, User user) {
     User oldUser = this.getById(id);
     oldUser.setUsername(user.getUsername());
-    oldUser.setRole(user.getRole());
+    Role role = this.roleService.getById(user.getRole().getId());
+    oldUser.setRole(role);
     oldUser.setName(user.getName());
     return this.userRepository.save(oldUser);
   }
@@ -165,8 +158,7 @@ public class UserServiceImpl implements UserService, UserDetailsService, Auditor
 
   @Override
   public void register(User newUser) {
-    List<Role> roles = this.roleRepository.findAll();
-    Role role = roles.get(1);
+    Role role = this.roleRepository.findByName("普通用户");
     newUser.setRole(role);
     this.userRepository.save(newUser);
   }

@@ -27,6 +27,7 @@ export class LeftControlComponent implements OnInit {
    * @Author poshichao
    */
   initMenu(): void {
+    this.menuService.initMenusOfCurrentUser();
     this.menuService.getMenusOfCurrentUser()
       .subscribe((menuList: Array<Menu>) => {
         this.menuList = menuList;

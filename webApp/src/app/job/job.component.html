@@ -1,18 +1,21 @@
 <div class="row mb-2">
-  <div class="col-12 text-right">
+  <div class="col-9 text-right">
     <a class="btn btn-primary" routerLink="add"><i class="fas fa-plus"></i>&nbsp;新增</a>
   </div>
-</div>
+  <div class="col-9">
+    <div class="card" *ngFor="let _post of pageData.content; index as i">
+      <div class="card-body">
+        <h5 class="card-title"><a class="cord-title-link" routerLink="view/{{_post.id}}">{{_post.title}}</a></h5>
+        <p class="card-text">{{_post.content}}</p>
+      </div>
+      <img class="card-img-bottom" src="{{imageApi + _post.imageUrl}}" alt="Card image cap">
+    </div>
 
-<div class="card" *ngFor="let _post of pageData.content; index as i">
-  <div class="card-body">
-    <h5 class="card-title">{{_post.title}}</h5>
-    <p class="card-text">{{_post.content}}</p>
+    <app-page [page]="pageData.number"
+              [size]="pageData.size"
+              [totalElements]="pageData.totalElements"
+              (changePage)="onPageChange($event)"></app-page>
   </div>
-  <img class="card-img-bottom" src="{{imageApi + _post.imageUrl}}" alt="Card image cap">
 </div>
 
-<app-page [page]="pageData.number"
-          [size]="pageData.size"
-          [totalElements]="pageData.totalElements"
-          (changePage)="onPageChange($event)"></app-page>
+

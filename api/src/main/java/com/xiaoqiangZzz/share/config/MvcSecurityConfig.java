@@ -63,7 +63,7 @@ public class MvcSecurityConfig extends WebSecurityConfigurerAdapter {
   @Bean
   CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(Arrays.asList("http://localhost:9876", "http://localhost:4200", "http://localhost:8102", "http://work-review.yunzhi.club:81"));
+    configuration.setAllowedOrigins(Arrays.asList("http://localhost:9876", "http://localhost:4200", "http://localhost:8102", "http://192.168.1.100:8102", "http://work-review.yunzhi.club:81"));
     configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
     configuration.setAllowedHeaders(Arrays.asList("content-type", "x-auth-token", "authorization", "verificationCode"));
     configuration.setExposedHeaders(Arrays.asList("x-auth-token"));

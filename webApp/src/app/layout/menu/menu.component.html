@@ -1,4 +1,20 @@
-<div class="logo"></div>
-<ul nz-menu nzTheme="dark" nzMode="horizontal">
-  <li nz-menu-item class="top-bar-info">知识共享平台</li>
+<ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" class="menu">
+  <li nz-menu-item class="app-name-container">
+    <p class="top-bar-info">
+      知识共享平台
+    </p>
+  </li>
+  <ng-container>
+    <li nz-submenu class="user-container" style="margin-top: 25px;">
+      <h5 title class="top-bar-info">
+        <i nz-icon nzType="user" nzTheme="outline"></i>
+        {{ currentLoginUser?.name }}
+      </h5>
+
+      <ul>
+        <li nz-menu-item routerLink="/personal">个人中心</li>
+        <li nz-menu-item (click)="onLogout()">注销</li>
+      </ul>
+    </li>
+  </ng-container>
 </ul>

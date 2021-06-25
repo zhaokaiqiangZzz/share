@@ -24,7 +24,7 @@ export class MenuService {
 
     constructor(private http: HttpClient,
                 private userService: UserService) {
-        this.initMenusOfCurrentUser();
+      this.initMenusOfCurrentUser();
     }
 
     /**
@@ -40,7 +40,7 @@ export class MenuService {
      * 设置当前菜单列表
      * @Author poshichao
      */
-    private initMenusOfCurrentUser(): void {
+    public initMenusOfCurrentUser(): void {
         this.userService.getCurrentLoginUser$().subscribe((user: User) => {
             this.currentMenuList = user.role.menuList;
             this.currentMenu.next(this.currentMenuList);

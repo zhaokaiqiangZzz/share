@@ -12,4 +12,6 @@ public interface RoleRepository extends CrudRepository<Role, Long>, JpaSpecifica
   List<Role> findAll();
 
   Page<Role> findAllByNameContaining(String name, Pageable pageable);
+
+  Role findByName(String name);
 }

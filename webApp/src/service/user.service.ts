@@ -333,7 +333,7 @@ export class UserService {
     return this.httpClient.patch<void>(this.baseUrl + '/setPassword', {password});
   }
 
-  register(param: { password: string; name: string; username: string }) {
-    return this.httpClient.post(this.baseUrl + '/register', param);
+  register(param: { password: string; name: string; username: string }): Observable<void> {
+    return this.httpClient.post<void>(this.baseUrl + '/register', param);
   }
 }
