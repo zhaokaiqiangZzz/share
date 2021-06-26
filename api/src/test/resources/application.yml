@@ -1,0 +1,79 @@
+spring:
+  profiles:
+    # h2: 开发环境使用H2数据库；ci 持续集成
+    active: h2
+
+  # 上传文件大小限制
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+server:
+  # 配置端口
+  port: ${port:8002}
+  servlet:
+    session:
+      timeout: 60m
+app:
+  # 32 位随机字符串 ASE 密钥
+  crypto: ${crypto:gllwmmds4cv1d678azj8plk4sypv35yn}
+  # 短消息类型
+  sms-type: ${sms-type:local}
+  # 初始化管理员用户名
+  username: ${default-username:13920618851}
+  # 初始化管理员密码
+  password: ${default-password:admin}
+  # 手机号登录成功后无需再次获取验证码的时间间隔
+  timeout: ${effective-timeout:3600}
+  #  短信平台
+  sms:
+    access-key-id: 8TkA3lc5Vo8ub2Cj
+    access-secret: 3Q7OleKWhQuDlWPJ3rrXCkO3iYKAzj
+    sign-name: 签名名称
+  # token 用于超级验证码的校验
+  token: work-review-
+---
+# 开发环境，使用h2作为数据库，禁用flyway
+spring:
+  config:
+    activate:
+      on-profile: h2
+  # 启用 flyway
+  flyway:
+    enabled: false
+  # 数据库查看地址 /h2-console
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      # 当 ddl-auto为none时，后续设置将失效
+      ddl-auto: create-drop
+  datasource:
+    # 当ddl-auto不为none时，系统初始化时均执行schema-${platform}.sql或data-${platform}.sql.
+    # platform 的值取决于jpa.datasource.platform
+    initialization-mode: always
+    platform: h2
+---
+# 持续集成环境，使用mysql作为数据库
+spring:
+  config:
+    activate:
+      on-profile: ci
+  # hibernate 数据库 验证级别
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: ${show-sql:false}
+    # 在同一请求中使用同一个EntityManager
+    # https://stackoverflow.com/questions/30549489/what-is-this-spring-jpa-open-in-view-true-property-in-spring-boot
+  #    open-in-view: false
+  # 配置数据源
+  datasource:
+    url: jdbc:mysql://${datasource.url:127.0.0.1}:${datasource.port:3306}/${datasource.dbname:share}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: ${datasource.username:db-username}
+    password: ${datasource.password:db-password}
+  # 启用 flyway
+  flyway:
+    enabled: false
